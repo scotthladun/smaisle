@@ -3,12 +3,15 @@ import styled from 'styled-components'
 import Logo from '../assets/smaisle_logo.png'
 import { ShoppingCartRounded, SearchRounded } from '@mui/icons-material';
 import BgOrange from '../assets/Navbar-bg.png'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function NavBar() {
 
+    const match = useLocation();
+
     const [backgroundImage, setBackgroundImage] = useState("none");
     const [textColor, setTextColor] = useState("#d55826");
+
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 10) {
@@ -20,6 +23,7 @@ export default function NavBar() {
         }
     });
 
+
     return (
         <Wrapper style={{ backgroundImage: backgroundImage }}>
             <Ul>
@@ -30,10 +34,17 @@ export default function NavBar() {
                 <li style={{ color: textColor }}> <StyledLink to={'/products'} > Products </StyledLink></li>
                 <li style={{ color: textColor }}><StyledLink to={'/myLists'}> My Lists </StyledLink></li>
             </Ul>
-            <Ul>
-                <li><SearchRounded /></li>
-                <li><ShoppingCartRounded /></li>
-            </Ul>
+            {match && match.pathname === '/' ?
+                <Ul>
+                    <li><SearchRounded /></li>
+                    <li><ShoppingCartRounded /></li>
+                </Ul>
+                :
+                <Ul>
+                    <li><SearchRounded style={{ color: textColor }} /></li>
+                    <li><ShoppingCartRounded style={{ color: textColor }} /></li>
+                </Ul>
+            }
         </Wrapper>
     )
 }

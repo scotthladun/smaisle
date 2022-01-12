@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function ProductTile() {
+export default function ProductTile({ product }) {
     return (
         <ProductWrapper>
-            <img src="https://via.placeholder.com/200x200" alt="placeholder" />
-            <h1>Product Tile</h1>
-            <p>$ 2.99</p>
-            <button>Add to Cart</button>
+            <img src={product.image} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>$ {product.price}</p>
+            <button>Add to Shopping List</button>
         </ProductWrapper>
     )
 }
@@ -20,13 +20,12 @@ const ProductWrapper = styled.div`
     justify-content: center;
     max-width: 250px;
     padding: 30px;
-    margin: 10px;
     border: 1px solid black;
     border-radius: 5px;
+    background-color: #fff;
     
-
     img {
-        width: 100%;
+        width: 85%;
         height: auto;
     }
 
