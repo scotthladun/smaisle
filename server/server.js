@@ -15,6 +15,7 @@ const dbo = require('./db/conn');
 const List = require('./models/List');
 const Products = require('./models/Product');
 const mongoose = require('mongoose');
+const { count } = require('./models/List');
 
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -52,7 +53,38 @@ app.post('/products', (req, res) => {
 // Handle product search
 app.post('/products/search', (req, res) => {
     const searchTerm = String(req.body.searchTerm);
-    console.log(searchTerm);
+    const page = req.body.page ? parseInt(req.body.page) : 1;
+    const skip = (page - 1) * 12;
+    Products.aggregate([
+        {
+            '$search': {
+                'index': 'productSearch',
+                'text': {
+                    'query': searchTerm,
+                    'path': {
+                        'wildcard': '*'
+                    }
+                }
+            },
+        },
+        {
+            '$skip': skip
+        },
+        {
+            '$limit': 12
+        }
+    ]).then((products, err) => {
+        if (products) {
+            res.status(200).json(products);
+        } else {
+            res.status(500).send(err);
+        }
+    });
+});
+
+// Handle product search results count
+app.post('/products/search/count', (req, res) => {
+    const searchTerm = String(req.body.searchTerm);
     Products.aggregate([
         {
             '$search': {
@@ -67,7 +99,7 @@ app.post('/products/search', (req, res) => {
         }
     ]).then((products, err) => {
         if (products) {
-            res.status(200).json(products);
+            res.status(200).json(products.length);
         } else {
             res.status(500).send(err);
         }

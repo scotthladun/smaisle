@@ -8,6 +8,7 @@ import LogoImg from '../assets/smaisle_logo.png'
 import StoreLogos from '../assets/store-logos.png'
 import ProductList from '../assets/product-list.png'
 import GroceryFloorplan from '../assets/grocery-floorplan.png'
+import { Link } from 'react-router-dom'
 
 export default function Homepage() {
     return (
@@ -23,7 +24,9 @@ export default function Homepage() {
                             <SubHeading>
                                 The most efficient way to organize your shopping experience! View all your favourite products in one place, add them to your shopping list and Smaisle will organize the best route through the store.
                             </SubHeading>
-                            <MainButton>Start Smaisling!</MainButton>
+                            <Link to='/products' style={{ textDecoration: 'none' }}>
+                                <MainButton>Start Smaisling!</MainButton>
+                            </Link>
                         </div>
                     </Grid>
                     <Grid item xs={6}>
@@ -77,7 +80,9 @@ export default function Homepage() {
 
                         </Grid>
                     </Grid>
-                    <MainButton>Start Smaisling!</MainButton>
+                    <Link to='/products' style={{ textDecoration: 'none' }}>
+                        <MainButton>Start Smaisling!</MainButton>
+                    </Link>
                     <br />
                     <br />
                 </div>

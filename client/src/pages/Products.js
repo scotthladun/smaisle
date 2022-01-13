@@ -58,22 +58,61 @@ export default function Products() {
     const handleSearch = (event) => {
         const searchTerm = search;
         console.log(searchTerm);
+        setCurrentPage(1);
         axios({
             method: 'POST',
             url: 'http://localhost:5001/products/search',
             data: {
-                "searchTerm": searchTerm
+                "searchTerm": searchTerm,
+                "page": currentPage
             }
         }).then(res => {
-            console.log(res.data);
+            axios({
+                method: 'POST',
+                url: 'http://localhost:5001/products/search/count',
+                data: {
+                    "searchTerm": searchTerm
+                }
+            }).then(res => {
+                console.log(res.data);
+                setCurrentPage(1);
+                setPageCount(Math.ceil(res.data / 12));
+            }).catch(err => {
+                console.log(err);
+            });
             setProducts(res.data);
         }).catch(err => {
             console.log(err);
         });
     }
 
+    const fetchProductSearch = async (currentPage) => {
+        const searchTerm = search;
+
+        axios({
+            method: 'POST',
+            url: 'http://localhost:5001/products/search',
+            data: {
+                "searchTerm": searchTerm,
+                "page": currentPage
+            }
+        }).then(res => {
+            setProducts(res.data);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
     useEffect(() => {
-        fetchProducts(currentPage);
+        if (search === '') {
+            fetchProducts(currentPage);
+        } else {
+            fetchProductSearch(currentPage);
+        }
         console.log(products);
     }, [currentPage]);
 
@@ -86,7 +125,7 @@ export default function Products() {
             <Grid container spacing={15} justifyContent="center">
                 <Grid item xs={3}>
                     <FiltersWrapper>
-                        <h2>Filters</h2>
+                        <h2>Search</h2>
                         <TextField
                             label="Search"
                             variant="outlined"
@@ -104,7 +143,7 @@ export default function Products() {
                             }}
 
                         />
-                        <Accordion expanded={expanded === 'panel1'} onChange={handleFilterExpand('panel1')} sx={{ width: '100%' }} elevation={0} disableGutters >
+                        {/* <Accordion expanded={expanded === 'panel1'} onChange={handleFilterExpand('panel1')} sx={{ width: '100%' }} elevation={0} disableGutters >
                             <AccordionSummary
                                 expandIcon={<Add />}
                             >
@@ -175,7 +214,7 @@ export default function Products() {
                                     <label htmlFor="category-6">Category 6</label>
                                 </div>
                             </AccordionDetails>
-                        </Accordion>
+                        </Accordion> */}
 
                     </FiltersWrapper>
                 </Grid>
