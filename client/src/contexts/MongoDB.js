@@ -29,7 +29,6 @@ export async function createShoppingList(mongoDb, user) {
             "$set": {
                 "name": "Shopping List",
                 "user": user.id,
-                "items": [],
                 "createdAt": new Date(),
             }
         },

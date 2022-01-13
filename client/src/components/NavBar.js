@@ -37,12 +37,12 @@ export default function NavBar() {
             {match && match.pathname === '/' ?
                 <Ul>
                     {/* <li><SearchRounded /></li> */}
-                    <li><ShoppingCartRounded /></li>
+                    {/* <li><ShoppingCartRounded /></li> */}
                 </Ul>
                 :
                 <Ul>
                     {/* <li><SearchRounded style={{ color: textColor }} /></li> */}
-                    <li><ShoppingCartRounded style={{ color: textColor }} /></li>
+                    {/* <li><ShoppingCartRounded style={{ color: textColor }} /></li> */}
                 </Ul>
             }
         </Wrapper>

@@ -6,7 +6,7 @@ import { Accordion, AccordionSummary, AccordionDetails, Grid, Pagination, TextFi
 import bg from '../assets/bg-texture.png'
 import { Add, Search } from '@mui/icons-material'
 
-export default function Products() {
+export default function Products({ addToShoppingList }) {
     const [products, setProducts] = useState([]);
     const [pageCount, setPageCount] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
@@ -222,7 +222,7 @@ export default function Products() {
                     <ProductGrid>
                         {
                             products.map(product => {
-                                return <ProductTile key={product._id} product={product} />
+                                return <ProductTile key={product._id} product={product} addToShoppingList={addToShoppingList} />
                             })
                         }
                     </ProductGrid>

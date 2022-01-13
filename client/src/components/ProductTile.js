@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function ProductTile({ product }) {
+export default function ProductTile({ product, addToShoppingList }) {
     return (
         <ProductWrapper>
             <img src={product.image} alt={product.name} />
             <h3>{product.name}</h3>
             <p>$ {product.price}</p>
-            <button>Add to Shopping List</button>
+            <button onClick={() => addToShoppingList(product)}>Add to Shopping List</button>
         </ProductWrapper>
+
     )
 }
 
