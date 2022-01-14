@@ -17,7 +17,7 @@ export default function Products({ addToShoppingList }) {
     const fetchProducts = async (page) => {
         axios({
             method: 'POST',
-            url: 'http://localhost:5001/products',
+            url: 'https://smaisle.herokuapp.com/products',
             data: {
                 page: page,
             }
@@ -35,7 +35,7 @@ export default function Products({ addToShoppingList }) {
     const fetchProductCount = async () => {
         axios({
             method: 'GET',
-            url: 'http://localhost:5001/products/count'
+            url: 'https://smaisle.herokuapp.com/products/count'
         }).then(res => {
             setPageCount(Math.ceil(res.data / 12));
         }).catch(err => {
@@ -61,7 +61,7 @@ export default function Products({ addToShoppingList }) {
         setCurrentPage(1);
         axios({
             method: 'POST',
-            url: 'http://localhost:5001/products/search',
+            url: 'https://smaisle.herokuapp.com/products/search',
             data: {
                 "searchTerm": searchTerm,
                 "page": currentPage
@@ -69,7 +69,7 @@ export default function Products({ addToShoppingList }) {
         }).then(res => {
             axios({
                 method: 'POST',
-                url: 'http://localhost:5001/products/search/count',
+                url: 'https://smaisle.herokuapp.com/products/search/count',
                 data: {
                     "searchTerm": searchTerm
                 }
@@ -91,7 +91,7 @@ export default function Products({ addToShoppingList }) {
 
         axios({
             method: 'POST',
-            url: 'http://localhost:5001/products/search',
+            url: 'https://smaisle.herokuapp.com/products/search',
             data: {
                 "searchTerm": searchTerm,
                 "page": currentPage
