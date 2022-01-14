@@ -15,7 +15,6 @@ const dbo = require('./db/conn');
 const List = require('./models/List');
 const Products = require('./models/Product');
 const mongoose = require('mongoose');
-const { count } = require('./models/List');
 
 mongoose.connect(process.env.ATLAS_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
