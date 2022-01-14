@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/static/js/main.c8b52489.js",
+    "static/media/bg-texture-orange.png": "/static/media/bg-texture-orange.a9f97cfe2b20e52ed46e.png",
+    "static/media/Navbar-bg.png": "/static/media/Navbar-bg.e46d4083700ca504e808.png",
+    "static/media/bg.png": "/static/media/bg.de366f903c4f1c4ffa6c.png",
+    "static/media/bg-texture.png": "/static/media/bg-texture.81476816c8916d81d33a.png",
+    "static/media/hero-image.png": "/static/media/hero-image.2e7ec4b81ba94cc83dde.png",
+    "static/media/product-list.png": "/static/media/product-list.4e07fa5ba38f1a1fdb86.png",
+    "static/media/smaisle_logo.png": "/static/media/smaisle_logo.297d63733ba18d6d8002.png",
+    "static/media/grocery-floorplan.png": "/static/media/grocery-floorplan.330b29e210836df069b2.png",
+    "static/media/store-logos.png": "/static/media/store-logos.0a9ed96a5dc206526c4e.png",
+    "index.html": "/index.html",
+    "main.c8b52489.js.map": "/static/js/main.c8b52489.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.c8b52489.js"
+  ]
+}
