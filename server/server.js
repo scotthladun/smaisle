@@ -55,6 +55,7 @@ app.post('/products/search', (req, res) => {
     const searchTerm = String(req.body.searchTerm);
     const page = req.body.page ? parseInt(req.body.page) : 1;
     const skip = (page - 1) * 12;
+    console.log(searchTerm);
     Products.aggregate([
         {
             '$search': {
@@ -83,8 +84,9 @@ app.post('/products/search', (req, res) => {
 });
 
 // Handle product search results count
-app.post('/products/search/count', (req, res) => {
+app.get('/products/search/count', (req, res) => {
     const searchTerm = String(req.body.searchTerm);
+    console.log(searchTerm);
     Products.aggregate([
         {
             '$search': {
@@ -99,7 +101,8 @@ app.post('/products/search/count', (req, res) => {
         }
     ]).then((products, err) => {
         if (products) {
-            res.status(200).json(products.length);
+            console.log(products.length);
+            res.status(200).json(products);
         } else {
             res.status(500).send(err);
         }
