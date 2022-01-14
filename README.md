@@ -6,9 +6,11 @@ I am brand new to using MongoDB and pretty new to developing using React, so thi
 ## Potential Future Features
 
 **Browse and Compare Multiple Stores**
+
 Right now users are only able to view the scraped data that I uploaded to the database from one grocery store. A potential update could be comparing prices and products from a variety of different stores in the user's area.
 
 **Crowdsourcing Aisle Data**
+
 Data on the aisles that products are kept in is not available online, and varies from store to store. It would be cool if users could scan a barcode of a product and update the location of it within a specific store to help others out.
 
 Copyright 2022 Scott Hladun
